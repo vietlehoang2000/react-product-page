@@ -1,0 +1,40 @@
+.Mac-mini{
+    background-color: rgb(0, 0, 0);
+    height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.intro--description{
+    position: absolute;
+    top: 75%;
+}
+
+.intro--description h3{
+    color: white;
+}
+
+.intro--description h3 span{
+    font-size: 1rem;
+    color: rgb(232, 232, 232);
+}
+
+.intro--description h1{
+    font-size: 72px;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.mini-product__details{
+    background-color: #151516;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    margin-top: 400px;
+}
+
+
+.intro--description h4{
+    color: rgb(91, 90, 90);
+}
+

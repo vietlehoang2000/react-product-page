@@ -1,0 +1,105 @@
+.light{
+    backdrop-filter: saturate(180%) blur(20px) !important;
+    background-color: rgba(255,255,255,0.72) !important;
+    border-bottom: 1px solid rgb(71, 71, 74);
+}
+
+
+
+.Mac-pro {
+  background-color: #fafafa;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.Mac-pro__image {
+  position: relative;
+  margin-top: -10px;
+}
+
+.Mac-pro h1 {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  z-index: 1;
+}
+
+.Mac-pro h1 span {
+  font-size: 2rem;
+  color: rgb(65, 65, 65);
+}
+.Mac-pro h2 span{
+    font-size: 2.5rem;
+}
+
+.Mac-pro__wrapper h4{
+    max-width: 80%;
+}
+.row .vl{
+    --bs-gutter-x: 0rem;
+}
+.vl{
+    margin: auto;
+    width: 1px;
+    background-color: black;
+  height: 700px;
+}
+
+.Mac-pro__wrapper{
+    width: 90%;
+    background-color: #fafafa;
+    border-radius: 14px;
+    margin-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+
+.Mac-pro__wrapper p{
+    text-align: left;
+    max-width:270px ;
+    line-height: 30px;
+    padding: 10px;
+}
+
+.color-green{
+    color:rgb(16, 80, 91);
+}
+
+.color-yellow{
+    color:rgb(212, 130, 7);
+}
+
+.color-orange{
+    color:rgb(227, 105, 66);
+}
+
+.color-pink{
+    color:rgb(183, 44, 49)
+}
+
+.color-purple{
+    color: rgb(53, 58, 113);
+}
+
+.color-blue{
+    color:rgb(37, 71, 109);
+}
+
+.product-colors button{
+    background-color: unset;
+    border: none;
+    margin: 5px;
+}
+
+.Mac-pro__wrapper img{
+    max-width: 236px;
+}
+
+
+
+@media only screen and (max-width: 768px){
+    .vl{
+        display: none;
+    }
+}

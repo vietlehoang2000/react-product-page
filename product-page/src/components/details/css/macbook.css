@@ -1,0 +1,71 @@
+
+.macbook__air{
+    background-color: rgb(0, 0, 0);
+    height: 100%;
+    padding-top: 5%;
+}
+.air--video{
+    padding-left: 20%;
+    padding-top: 50px;
+}
+
+.air-product__details{
+    background-color: #151516;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+
+.dark{
+    background-color: rgba(29,29,31,0.72) !important;
+    backdrop-filter: saturate(180%) blur(20px) !important;
+    border-bottom: 1px solid rgb(245, 245, 247);
+}
+
+.air-product__wrapper{
+    background-color: #1D1D1F;
+    width: 90%;
+    border-radius: 14px;
+    margin-top: 30px;
+    padding-bottom: 40px;
+}
+
+.air-product__wrapper img{
+    margin-top: -40px;
+    max-width: 256px;
+}
+
+.macbook__air h3{
+    color: white;
+}
+.macbook__air h1 {
+    font-size: 72px;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.macbook__air h3 span{
+    font-size: 1rem;
+    color: #eee;
+}
+
+.macbook__air h4{
+    color: rgb(91, 90, 90);
+}
+
+.air-product__wrapper p{
+    color: white;
+    text-align: left;
+    max-width:230px ;
+    line-height: 30px;
+    padding: 10px;
+}
+
+.air-product__wrapper h4{
+    width:230px ;
+    color: white;
+    margin-top: 20px;
+    text-align: left;
+    padding: 10px;
+}
