@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 
 import { BrowserRouter as Router, useParams } from "react-router-dom";
 
+import { IncreaseBagQuantity} from '../LocalStorageContext'
+
 import ReactPlayer from "react-player/lazy";
 
 import Spinner from "react-bootstrap/Spinner";
@@ -11,7 +13,7 @@ import { BsFillCircleFill } from "react-icons/bs";
 
 import "./css/macbook.css";
 
-const url = "https://product-list-fake-rest-server.herokuapp.com";
+  const url = "https://product-list-fake-rest-server.herokuapp.com";
 const priceDif = 1.5;
 
 export default function MacbookAir({
@@ -25,6 +27,9 @@ export default function MacbookAir({
   const [firstProduct, setFirstProduct] = useState([]);
 
   const [secondProduct, setSecondProduct] = useState([]);
+
+  const addItemToBag = IncreaseBagQuantity();
+
 
   let formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -155,7 +160,7 @@ export default function MacbookAir({
                 <h4 className="mx-auto">
                   {formatter.format(firstProduct.price)}
                 </h4>
-                <Button className="col-4 mx-left">Buy</Button>
+                <Button className="col-4 mx-left" onClick={()=>addItemToBag()}>Buy</Button>
               </div>
               <div className="vl "></div>
               <div className="product--more-expensive col-md-5 col-7  text-center">
@@ -186,7 +191,7 @@ export default function MacbookAir({
                 <h4 className="mx-auto">
                   {formatter.format(firstProduct.price * priceDif)}
                 </h4>
-                <Button className="col-4 mx-left">Buy</Button>
+                <Button className="col-4 mx-left" onClick={()=>addItemToBag()}>Buy</Button>
               </div>
             </div>
           </div>

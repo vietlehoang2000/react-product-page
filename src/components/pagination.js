@@ -3,7 +3,6 @@ import Pagination from "react-bootstrap/Pagination";
 export default function PaginationShow({category,totalCount,ItemsPageLimit,currentPage,setCurrentPage,refSpinnerLoading}) {
     refSpinnerLoading.current=true;
     let totalPagesNeeded=0;
-    
     if(category==="Notebook"){
    totalPagesNeeded= Math.ceil(totalCount.Notebook/ItemsPageLimit);}
   else{

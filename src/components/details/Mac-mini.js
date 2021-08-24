@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import { BrowserRouter as Router, useParams } from "react-router-dom";
 
@@ -52,7 +52,10 @@ export default function MacMini({setproductNavStatus, setproductNavContent}) {
       case "grey":
         refDesktopProduct.image ="https://www.apple.com/v/mac/home/bi/images/overview/compare/compare_macmini__f53ds86a9eq2_small_2x.png"
         break;
+      default :
+          break;
       }
+     
   
       setFirstProduct(refDesktopProduct);
   }
@@ -67,6 +70,8 @@ export default function MacMini({setproductNavStatus, setproductNavContent}) {
         break;
       case "green":
         refDesktopProduct.image ="https://www.apple.com/v/mac/home/bi/images/overview/compare/compare_macmini__f53ds86a9eq2_small_2x.png"
+        break;
+      default :
         break;
       }
 
@@ -93,6 +98,7 @@ export default function MacMini({setproductNavStatus, setproductNavContent}) {
         <div className="Mac-mini">
           <div className="Mac-mini__intro animate__animated animate__fadeIn d-flex justify-content-center">
             <img
+            alt="apple"
               width="1200px"
               src="https://www.apple.com/v/mac-mini/m/images/overview/hero__x8ruukomx2au_large.jpg"
             ></img>
@@ -115,11 +121,11 @@ export default function MacMini({setproductNavStatus, setproductNavContent}) {
           <div className="mini-product__details ">
             <div className="air-product__wrapper row mx-auto d-flex flex-row justify-content-center">
             <div className="product--cheaper col-md-5 col-7 text-center">
-                <img src={`${firstProduct.image}`}></img>
+                <img alt="" src={`${firstProduct.image}`}></img>
                 <div className="product-colors">
                   {firstProduct.color.map(function (item) {
                     return (
-                      <button onClick={()=> changeColorFirstProduct(item)}>
+                      <button key={item} onClick={()=> changeColorFirstProduct(item)}>
                         <BsFillCircleFill
                           style={{ fill: item }}
                           className={`${item}`}
@@ -146,11 +152,11 @@ export default function MacMini({setproductNavStatus, setproductNavContent}) {
               </div>
               <div className="vl "></div>
               <div className="product--more-expensive col-md-5 col-7  text-center">
-                <img src={`${secondProduct.image}`}></img>
+                <img alt="" src={`${secondProduct.image}`}></img>
                 <div className="product-colors">
                   {secondProduct.color.map(function (item) {
                     return (
-                      <button onClick={()=> changeColorSecondProduct(item)}>
+                      <button key={item} onClick={()=> changeColorSecondProduct(item)}>
                         <BsFillCircleFill
                           style={{ fill: item }}
                           className={`${item}`}

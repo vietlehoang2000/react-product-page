@@ -1,3 +1,7 @@
+import { useContext, useEffect, useState } from "react";
+import { IncreaseBagQuantity} from './LocalStorageContext'
+
+
 import Button from "react-bootstrap/Button";
 import { IoHardwareChipOutline } from "react-icons/io5";
 import { SiIntel } from "react-icons/si";
@@ -24,6 +28,10 @@ const styleIcon = { fontSize: "2.5rem" };
 
 
 export default function ItemShow({ product,category }) {
+  
+  
+  const addItemToBag = IncreaseBagQuantity(product,category);
+  
   let routeLink ='';
   function changeRouteLink(){
     if(category==="Notebook"){
@@ -62,6 +70,8 @@ export default function ItemShow({ product,category }) {
     );
   }
 
+
+
   return (
     <div className="item col-12 col-lg-4 col-sm-6 text-center">
       
@@ -73,7 +83,7 @@ export default function ItemShow({ product,category }) {
       </h4></Link>
       <p>from {product.price}$</p>
       <ItemColorShow></ItemColorShow>
-      <Button size="sm">buy</Button>
+      <Button size="sm" onClick={()=>addItemToBag(product,category)}>Add to Bag</Button>
       <hr />
       {product.display !== "" ? (
         <div className="item--display">
