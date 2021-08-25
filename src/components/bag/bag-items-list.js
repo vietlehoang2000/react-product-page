@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 
-import {UseLocalStorageData} from '../LocalStorageContext'
 
 import Spinner from "react-bootstrap/Spinner";
 
@@ -11,6 +10,8 @@ import Receipt from "./receipt";
 import { Counter } from "../counter/Counter";
 import './css/bag.css'
 import { Button } from "bootstrap";
+
+import {UseLocalStorageData} from '../LocalStorageContext'
 
 import {
   BrowserRouter as Router,
@@ -86,7 +87,7 @@ export default function BagItemsList({
     </div>):(
     <div className="bag-list">
     <h4>You dont have item in bag</h4>
-    <Link to="../../"><button  className="btn btn-primary">Return Home</button></Link>
+    <Link to="../../"><button  className="btn btn-primary" onClick={UseLocalStorageData()}>Return Home</button></Link>
     </div>
     )}
    

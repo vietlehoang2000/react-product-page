@@ -75,8 +75,9 @@ export default function ItemShow({ product,category }) {
   return (
     <div className="item col-12 col-lg-4 col-sm-6 text-center">
       
-      <Link to={`${routeLink}`}>
+      
       <img alt="" src={product.image}></img>
+      <Link to={`${routeLink}`}>
         <h4>
         {product.name}
         <span> ({product.version})</span>
