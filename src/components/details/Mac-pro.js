@@ -22,8 +22,17 @@ export default function MacPro({ setproductNavStatus, setproductNavContent }) {
 
   const [secondProduct,setSecondProduct] =useState([])
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
-    fetch(`${url}/Desktop/${id}`)
+    fetch(`${url}/Desktop/${id}`,{
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token,
+        // 'Content-Type': 'application/json'
+      }
+      })
       .then((response) => response.json())
       .then((data) => {
         setFirstProduct(data);

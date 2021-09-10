@@ -70,7 +70,10 @@ function App() {
               />
             </Route>
             <Route path="/components/authentication/authenticate">
-              <Authenticate></Authenticate>
+              <Authenticate
+                setproductNavStatus={setproductNavStatus}
+                setproductNavContent={setproductNavContent}
+              ></Authenticate>
             </Route>
             <Route path="/">
               <Home setproductNavStatus={setproductNavStatus} />

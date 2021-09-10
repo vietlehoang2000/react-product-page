@@ -119,6 +119,29 @@ a:hover {
   text-align: center;
   font-weight: 500;
 }
+
+.dropdown #dropdown-basic{
+  background: none !important;
+  color: none !important;
+  border: none !important;
+  width: 28px;
+  padding: unset !important;
+  text-align: center;
+}
+
+.dropdown-menu[data-bs-popper]{
+  left: -100px;
+  margin-top: .975rem;
+}
+
+.dropdown-item img{
+  min-height: unset !important;
+}
+
+.avatarImg{
+  border-radius: 50%;
+}
+
 @media only screen and (max-width: 768px) {
   p {
     width: 100%;

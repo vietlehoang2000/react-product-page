@@ -1,0 +1,15 @@
+.authenticate{
+    margin-top: 100px;
+}
+
+.btn--login,.btn--regis{
+    border: none;
+    background: none;
+    color: rgb(0, 102, 204);
+    cursor: pointer;
+}
+
+.failStatus{
+    color: red;
+    
+}

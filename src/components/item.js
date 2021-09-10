@@ -28,8 +28,9 @@ const styleIcon = { fontSize: "2.5rem" };
 
 
 export default function ItemShow({ product,category }) {
+
   
-  
+
   const addItemToBag = IncreaseBagQuantity(product,category);
   
   let routeLink ='';

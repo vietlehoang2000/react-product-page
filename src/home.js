@@ -5,6 +5,7 @@ import ItemList from "./components/item-list";
 import PaginationShow from "./components/pagination";
 
 import { AiFillApple, AiOutlineShopping } from "react-icons/ai";
+import {FaRegUserCircle} from "react-icons/fa"
 
 import {
   LocalStorageDataProvider,
@@ -52,20 +53,46 @@ function Home({ setproductNavStatus }) {
 
   let localStorageData = UseLocalStorageData();
 
-  let localStorageDataQuantity =localStorageData.reduce(function(previousValue, currentValue){
-    return previousValue + currentValue.quantity
-  },0)
+  const[ userLocalStorage,setUserLocalStorage]  = useState([]);
 
+ 
+
+  let localStorageDataQuantity = localStorageData.reduce(function (
+    previousValue,
+    currentValue
+  ) {
+    return previousValue + currentValue.quantity;
+  },
+  0);
+
+  const token = localStorage.getItem("token");
   //get data from heroku server
   useEffect(() => {
     let refTotalCount = { ...totalCount };
+
     async function fetchCategory() {
       const [noteBookResponse, desktopResponse] = await Promise.all([
         fetch(
-          `${url}/Notebook?_sort=${sortCategory}&_order=${orderSort}&q=${searchKeyWord}&_page=${currentPage}&_limit=${ItemsPageLimit}`
+          `${url}/Notebook?_sort=${sortCategory}&_order=${orderSort}&q=${searchKeyWord}&_page=${currentPage}&_limit=${ItemsPageLimit}`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              Authorization: "Bearer " + token,
+              // 'Content-Type': 'application/json'
+            },
+          }
         ),
         fetch(
-          `${url}/Desktop?_sort=${sortCategory}&_order=${orderSort}&q=${searchKeyWord}&_page=${currentPage}&_limit=${ItemsPageLimit}`
+          `${url}/Desktop?_sort=${sortCategory}&_order=${orderSort}&q=${searchKeyWord}&_page=${currentPage}&_limit=${ItemsPageLimit}`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              Authorization: "Bearer " + token,
+              // 'Content-Type': 'application/json'
+            },
+          }
         ),
       ]);
 
@@ -84,6 +111,8 @@ function Home({ setproductNavStatus }) {
         refSpinnerLoading.current = true;
         setTotalCount(refTotalCount);
         setproductNavStatus("");
+        setUserLocalStorage (JSON.parse(localStorage.getItem("user") || "[]"));
+        console.log(userLocalStorage);
       })
       .catch((error) => console.log(error));
   }, [orderSort, searchKeyWord, currentPage, refSpinnerLoading]);
@@ -113,7 +142,14 @@ function Home({ setproductNavStatus }) {
 
   function searchKeyword(keyword) {
     if (category === "Notebook") {
-      fetch(`${url}/Notebook?q=${keyword}`)
+      fetch(`${url}/Notebook?q=${keyword}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+          // 'Content-Type': 'application/json'
+        },
+      })
         .then((response) => response.json())
         .then((data) => {
           setNotebookProduct(data);
@@ -121,7 +157,14 @@ function Home({ setproductNavStatus }) {
         })
         .catch((error) => console.log(error));
     } else {
-      fetch(`${url}/Desktop?q=${keyword}`)
+      fetch(`${url}/Desktop?q=${keyword}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+          // 'Content-Type': 'application/json'
+        },
+      })
         .then((response) => response.json())
         .then((data) => {
           setdesktopProduct(data);
@@ -129,9 +172,16 @@ function Home({ setproductNavStatus }) {
         })
         .catch((error) => console.log(error));
     }
+  } 
+
+  function logOut(){
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   }
 
+  const avatarStyle ={fontSize:"24px",marginRight:"5px"}
   const iconStyle = { color: "black", fontSize: "1.8rem" };
+  console.log(userLocalStorage)
   return (
     <>
       <Navbar
@@ -176,14 +226,29 @@ function Home({ setproductNavStatus }) {
             </InputGroup>
           </Navbar.Collapse>
           <Navbar.Brand className="shopping-card--home mx-auto">
-          <Link to="./components/bag/bag-items-list">
+            <Dropdown>
+            <Dropdown.Toggle id="dropdown-basic">
             <AiOutlineShopping style={iconStyle}></AiOutlineShopping>
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Link to='./components/bag/bag-items-list'><Dropdown.Item href="#/action-2" className="d-flex justify-content-center"><Button className="mx-auto">Check Out</Button></Dropdown.Item></Link>
+              {userLocalStorage.length===0?(<Link to='./components/authentication/Authenticate'><Dropdown.Item href="#/action-2" className="d-flex justify-content-center"><FaRegUserCircle style={avatarStyle}></FaRegUserCircle><span >Sign In</span></Dropdown.Item></Link>):
+              (<>
+                <Dropdown.Item href="#/action-2" className="d-flex justify-content-center"><img className="avatarImg" width="30px" height="24px" src={userLocalStorage.avatar}></img><span >{userLocalStorage.firstName}</span></Dropdown.Item>
+                <Link to='./components/authentication/Authenticate'><Dropdown.Item href="#/action-2" className="d-flex justify-content-center" onClick={()=>logOut()}>Log Out</Dropdown.Item></Link>
+                </>
+              )}
+              
+            </Dropdown.Menu>
             {localStorageDataQuantity !== 0 ? (
-              <div className="card--home-number">{localStorageDataQuantity}</div>
+              <div className="card--home-number">
+                {localStorageDataQuantity}
+              </div>
             ) : (
               <></>
             )}
-            </Link>
+     
+            </Dropdown>
           </Navbar.Brand>
         </Container>
       </Navbar>

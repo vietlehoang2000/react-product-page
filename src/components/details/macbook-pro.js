@@ -13,6 +13,9 @@ import "./css/macbook.css";
 
 const url = "https://product-list-fake-rest-server.herokuapp.com";
 const priceDif = 1.5;
+
+const token = localStorage.getItem("token");
+
 export default function MacbookPro({setproductNavStatus, setproductNavContent}) {
   let { id } = useParams();
 
@@ -28,7 +31,14 @@ export default function MacbookPro({setproductNavStatus, setproductNavContent}) 
   });
 
   useEffect(() => {
-    fetch(`${url}/Notebook/${id}`)
+    fetch(`${url}/Notebook/${id}`,{
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token,
+        // 'Content-Type': 'application/json'
+      }
+      })
       .then((response) => response.json())
       .then((data) => {
         setproductNavStatus('dark');
